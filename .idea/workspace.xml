@@ -5,29 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="alembic versions">
-      <change afterPath="$PROJECT_DIR$/alembic/versions/2024_10_13_2120-f52d7edb86d5_create_tables.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Post/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Post/crud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Post/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Post/shemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Profile/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Profile/crud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Profile/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/Profile/shemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/User/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/User/crud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/User/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_v2/User/shemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core2/Models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/Models/post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core2/Models/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/Models/profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core2/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/Models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_12_1403-1d631cd406d7_create_tables.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_12_1412-b5eff444553e_del_column_in_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_1443-45d0dec2b738_create_table_post.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_1444-e48165993a98_create_table_post.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_1446-beae92e3c009_create_table_post.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_2032-ac2e480e4fb8_create_table_profiles.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core2/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_2120-f52d7edb86d5_create_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2024_10_14_1605-8318c0594486_create_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/Post/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/Post/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/Post/shemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/shemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/User/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/User/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v2/User/shemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/shemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api_v2/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_sqlite.db" beforeDir="false" afterPath="$PROJECT_DIR$/db_sqlite.db" afterDir="false" />
@@ -128,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728840872684</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="alembic versions">
+      <option name="closed" value="true" />
+      <created>1728846305254</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728846305254</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">

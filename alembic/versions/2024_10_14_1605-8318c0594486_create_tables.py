@@ -1,8 +1,8 @@
 """Create tables
 
-Revision ID: f52d7edb86d5
+Revision ID: 8318c0594486
 Revises: 
-Create Date: 2024-10-13 21:20:27.881486
+Create Date: 2024-10-14 16:05:18.608265
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "f52d7edb86d5"
+revision: str = "8318c0594486"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -37,10 +37,10 @@ def upgrade() -> None:
     )
     op.create_table(
         "Post",
+        sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("title", sa.String(length=100), nullable=False),
         sa.Column("body", sa.String(), nullable=False),
         sa.Column("user_id", sa.Integer(), nullable=False),
-        sa.Column("id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["user_id"],
             ["User.id"],
@@ -49,11 +49,11 @@ def upgrade() -> None:
     )
     op.create_table(
         "Profile",
+        sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("first_name", sa.String(), nullable=False),
         sa.Column("last_name", sa.String(), nullable=False),
-        sa.Column("bio", sa.String(), nullable=False),
+        sa.Column("bio", sa.String(), nullable=True),
         sa.Column("user_id", sa.Integer(), nullable=False),
-        sa.Column("id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["user_id"],
             ["User.id"],

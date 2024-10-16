@@ -16,4 +16,4 @@ class Post(Base):
         ForeignKey("User.id"),
     )
 
-    # user: Mapped["User"] = relationship(back_populates="posts")
+    user: Mapped["User"] = relationship(back_populates="posts")

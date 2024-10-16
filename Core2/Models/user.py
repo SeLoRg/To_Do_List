@@ -1,5 +1,5 @@
 from .base import Base
-from sqlalchemy import String, Integer
+from sqlalchemy import String, Integer, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from typing import TYPE_CHECKING
 
@@ -13,5 +13,5 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_name: Mapped[str] = mapped_column(String[32], unique=True)
 
-    # posts: Mapped[list["Post"]] = relationship(back_populates="user")
+    posts: Mapped[list["Post"]] = relationship(back_populates="user")
     profile: Mapped["Profile"] = relationship(back_populates="user")
