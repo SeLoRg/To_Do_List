@@ -4,21 +4,121 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="alembic versions">
+    <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="до изменений">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/REQUESTED" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg-0.29.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/_asyncio_compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/_testbase/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/_testbase/fuzzer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/_version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/cluster.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/connect_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/connresource.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/cursor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/exceptions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/exceptions/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/introspection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/__init__.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/buffer.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/buffer.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/__init__.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/bits.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/bytea.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/context.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/datetime.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/float.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/geometry.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/hstore.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/int.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/json.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/jsonpath.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/misc.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/network.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/numeric.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/pg_snapshot.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/text.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/tid.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/codecs/uuid.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/consts.pxi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/cpythonx.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/debug.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/frb.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/frb.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/hton.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/pgproto.cp312-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/pgproto.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/pgproto.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/tohex.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/types.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pgproto/uuid.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/pool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/prepared_stmt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/array.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/base.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/base.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/pgproto.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/range.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/record.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/codecs/textutils.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/consts.pxi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/coreproto.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/coreproto.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/cpythonx.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/encodings.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/pgtypes.pxi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/prepared_stmt.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/prepared_stmt.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/protocol.cp312-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/protocol.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/protocol.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/record/__init__.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/scram.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/scram.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/settings.pxd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/protocol/settings.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/serverversion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/transaction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/types.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/asyncpg/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/REQUESTED" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2-2.9.9.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/_ipaddress.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/_json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/_psycopg.cp312-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/_range.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/errorcodes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/errors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/extensions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/extras.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/pool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/sql.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/psycopg2/tz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core2/Models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/Models/post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core2/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/Models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core2/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core2/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_13_2120-f52d7edb86d5_create_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2024_10_14_1605-8318c0594486_create_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/Post/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/crud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/Post/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/Post/shemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/Post/shemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/User/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/crud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/User/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/User/shemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/User/shemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_v2/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v2/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/alembic.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/2024_10_14_1605-8318c0594486_create_tables.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db_sqlite.db" beforeDir="false" afterPath="$PROJECT_DIR$/db_sqlite.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,10 +224,19 @@
       <option name="project" value="LOCAL" />
       <updated>1728846305254</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="до изменений">
+      <option name="closed" value="true" />
+      <created>1729071065203</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729071065203</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.ini" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +254,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="alembic vetsions" />
     <MESSAGE value="alembic versions" />
-    <option name="LAST_COMMIT_MESSAGE" value="alembic versions" />
+    <MESSAGE value="до изменений" />
+    <option name="LAST_COMMIT_MESSAGE" value="до изменений" />
   </component>
 </project>
