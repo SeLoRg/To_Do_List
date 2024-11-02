@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="обновление папок">
-      <change afterPath="$PROJECT_DIR$/alembic/versions/4b536592aac6_add_orderproduct_to_m2m.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/versions/837d98accbc4_add_resumes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_alhemy/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_alhemy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/1d5f8302ceaa_add_column_count_in_orderproduct.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/1ff5d8d8109b_.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/4b536592aac6_add_orderproduct_to_m2m.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/837d98accbc4_add_resumes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/9281e8be0505_add_column_count_in_orderproduct.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729847881961</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="обновление папок">
+      <option name="closed" value="true" />
+      <created>1730570511747</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730570511747</updated>
+    </task>
+    <task id="LOCAL-00010" summary="обновление папок">
+      <option name="closed" value="true" />
+      <created>1730570518355</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730570518355</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
