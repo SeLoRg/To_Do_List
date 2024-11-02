@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="обновление папок">
-      <change afterPath="$PROJECT_DIR$/alembic.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/script.py.mako" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/versions/1ff5d8d8109b_.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_alhemy/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_alhemy/shemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alembic/versions/4b536592aac6_add_orderproduct_to_m2m.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alembic/versions/837d98accbc4_add_resumes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlalchemy_h/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlalchemy_h/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlalchemy_h/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlalchemy_h/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlalchemy_h/shemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_alhemy/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_alhemy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_alhemy/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,22 +43,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.config.executor": "Debug",
-    "Python.crud.executor": "Debug",
-    "Python.database.executor": "Run",
-    "Python.ff.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/rosti/PycharmProjects/FastAPI_DB",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.config.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.crud.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ff.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.models.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rosti/PycharmProjects/FastAPI_DB&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI" />
@@ -152,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729768380668</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="обновление папок">
+      <option name="closed" value="true" />
+      <created>1729847881961</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729847881961</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">

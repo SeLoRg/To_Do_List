@@ -1,42 +1,36 @@
 from test_alhemy.config import settings
 import asyncio
-from test_alhemy import config, models, database
-from sqlalchemy import Result, select, update, delete, insert, text
+from test_alhemy import config, database
+from sqlalchemy import Result, select, update, delete, insert, text, func, cast, Integer
+from sqlalchemy.orm import joinedload, selectinload, contains_eager
 from sqlalchemy.ext.asyncio import AsyncSession
+from models import (
+    ResumesModel,
+    WorkersModel,
+    Workload,
+    OrdersModel,
+    OrderProduct,
+    ProductsModel,
+)
 
 
 async def main():
     async for session in database.db_helper.get_session():
         ses: AsyncSession = session
 
-        stmt = select(models.WorkersModel.rang)
-        res: Result = await ses.execute(stmt)
-        print(res.scalars().all())
-        print("\n----До-----\n")
-
-        # stmt = text(
-        #     """
-        #             UPDATE "Workers"
-        #             SET rang = 't1'
-        #             WHere id = 2;
-        #                 """
-        # )
         stmt = (
-            update(models.WorkersModel)
-            .where(models.WorkersModel.id == 2)
-            .values(rang="t1")
+            select(OrdersModel)
+            .options(selectinload(OrdersModel.products))
+            .order_by(OrdersModel.id)
         )
-        await ses.execute(stmt)
+        orders = await ses.execute(stmt)
+        orders = orders.scalars().all()
 
-        print("\n----После-----\n")
+        for i in orders:
+            for j in i.products:
+                print(j)
 
-        stmt = select(models.WorkersModel.rang)
-        res: Result = await ses.execute(stmt)
-        print(res.scalars().all())
+        return 1
 
 
-asyncio.run(main())
-# print(out)
-# print(out.all())
-# for i in out:
-#     print(i)
+out = asyncio.run(main())
