@@ -33,7 +33,7 @@ async def update_partial_post(
     post_id: int,
     post_in: UpdatePartialPost,
     session: AsyncSession,
-):
+) -> PostModel:
     post = await get_post(post_id=post_id, session=session)
 
     for name, value in post_in.model_dump(exclude_none=True).items():

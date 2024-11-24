@@ -1,22 +1,9 @@
-from contextlib import asynccontextmanager
-
-from Core2.Models import Base
-from Core2.db_helper import db_helper
 from fastapi import FastAPI
 from app.router import router
 from api_v2 import router as api_router
+from app.auth_jwt_router import router as jwt_router
 
-# from api_v2 import router as api_user_router
-# from api_v2 import router as
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # async with db_helper.engine.begin() as eng:
-    #     await eng.run_sync(Base.metadata.create_all)
-    yield
-
-
-app = FastAPI(lifespan=lifespan)
-app.include_router(router)
+app = FastAPI()
+app.include_router(router, prefix="/auth", tags=["Authorize"])
 app.include_router(api_router, prefix="/api_v2")
+app.include_router(jwt_router, prefix="/jwt-auth")

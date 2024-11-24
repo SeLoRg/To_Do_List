@@ -13,5 +13,9 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_name: Mapped[str] = mapped_column(String[32], unique=True)
 
+    role: Mapped[str]
+    password: Mapped[bytes]
+    email: Mapped[str]
+
     posts: Mapped[list["Post"]] = relationship(back_populates="user")
     profile: Mapped["Profile"] = relationship(back_populates="user")

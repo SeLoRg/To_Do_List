@@ -57,7 +57,7 @@ async def update_partial_product(
     session: AsyncSession = Depends(db_helper.get_session),
 ):
     return await crud.update_product(
-        product_in=product_in, product=product, session=session
+        product_in=product_in, product=product, session=session, partial=True
     )
 
 

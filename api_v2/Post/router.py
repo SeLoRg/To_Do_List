@@ -31,11 +31,11 @@ async def get_posts(session: AsyncSession = Depends(db_helper.get_session)):
 @router.patch("/{post_id}/", response_model=Post)
 async def update_partial_post(
     post_in: UpdatePartialPost,
-    post_id: int,
+    user_id: int,
     session: AsyncSession = Depends(db_helper.get_session),
 ):
     return await crud.update_partial_post(
-        post_id=post_id, post_in=post_in, session=session
+        post_id=user_id, post_in=post_in, session=session
     )
 
 

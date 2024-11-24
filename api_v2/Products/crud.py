@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -36,16 +36,15 @@ async def create_product(
 
 
 async def update_product(
-    product_in: ProductsUpdateSchema | ProductsUpdatePartialSchema,
+    product_in: ProductsUpdatePartialSchema | ProductsUpdateSchema,
     product: ProductsModel,
     session: AsyncSession,
     partial: bool = False,
 ) -> ProductsModel:
-    for key, value in product_in.model_dump(exclude_none=partial).items():
+    for key, value in product_in.model_dump(exclude_none=True).items():
         setattr(product, key, value)
 
     await session.commit()
-
     return product
 
 

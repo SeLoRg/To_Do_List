@@ -3,10 +3,17 @@ from .shemas import CreateUser, User, UpdateUser
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, Result
 from fastapi import HTTPException, status
+import bcrypt
 
 
 async def create_user(user_in: CreateUser, session: AsyncSession) -> UserModel:
-    user = UserModel(**user_in.model_dump())
+    salid = bcrypt.gensalt()
+    hash_passw = bcrypt.hashpw(password=user_in.password.encode(), salt=salid)
+
+    user = UserModel(
+        **{k: v for k, v in user_in.model_dump().items() if k != "password"},
+        password=hash_passw
+    )
     session.add(user)
     await session.commit()
     return user
@@ -32,8 +39,14 @@ async def update_user(
     user_id: int, user_in: UpdateUser, session: AsyncSession
 ) -> UserModel | None:
     user = await session.get(UserModel, user_id)
-    for name, value in user_in.model_dump(exclude_none=True):
-        setattr(user, name, value)
+    for name, value in user_in.model_dump(exclude_none=True).items():
+        if name == "password":
+            salt = bcrypt.gensalt()
+            hash_pwd = bcrypt.hashpw(password=value.encode(), salt=salt)
+            setattr(user, name, hash_pwd)
+        else:
+            setattr(user, name, value)
+
     await session.commit()
     return user
 

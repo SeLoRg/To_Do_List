@@ -1,22 +1,65 @@
-from fastapi import APIRouter
-from app.models import Feedback
+import uuid
 
+from fastapi import APIRouter, Depends, HTTPException, status, Response, Header, Cookie
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from typing import Annotated, Any
+from fastapi_users.authentication import CookieTransport
+import secrets
 
 router = APIRouter()
+security = HTTPBasic()
+cookie_transport = CookieTransport(cookie_max_age=3600)
+
 fake_users = {
-    1: {"username": "john_doe", "email": "john@example.com"},
-    2: {"username": "jane_smith", "email": "jane@example.com"},
+    "admin": "admin",
+    "selorg": "1234",
 }
 
-fake_feedback = []
+fake_tokens = {
+    "jdjfhdg33jnfiue": "admin",
+    "jnjbyybjnkuigusknfo": "selorg",
+}
+
+COOKIES: dict[str, dict[str, Any]] = {}
 
 
-@router.get("/users/")
-def get_users(limit: int):
-    return dict(list(fake_users.items())[:limit])
+async def token_auth_username(
+    token: str = Header(alias="auth-token"),
+):
+    auth_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid token",
+    )
+
+    if username := fake_tokens.get(token):
+        return username
+
+    raise auth_exception
 
 
-@router.post("/feedback")
-def post_feedback(feed: Feedback):
-    fake_feedback.append(feed)
-    return {"message": f"Feedback received. Thank you, {feed.name}!"}
+@router.get("/basi-auth/")
+async def token_auth(username: str = Depends(token_auth_username)):
+    return {"message": f"Hi, {username}!", "username": username}
+
+
+@router.post("/cookie-login/")
+async def cookie_login(
+    response: Response,
+    username: str = Depends(token_auth_username),
+):
+    session_id = uuid.uuid4().hex
+    COOKIES[session_id] = {
+        "username": username,
+    }
+    response.set_cookie("cookie", session_id)
+    return {"message": "ok"}
+
+
+@router.get("/check-cookie/")
+async def check_cookie(session_id: str = Cookie(alias="cookie")):
+    if session_id not in COOKIES:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="not authenticated"
+        )
+
+    return {"username": COOKIES[session_id]["username"]}

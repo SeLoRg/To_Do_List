@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ConfigDict
+from typing import Optional
 
 
 class ProductsBase(BaseModel):
@@ -16,7 +17,7 @@ class ProductsUpdate(ProductsBase):
 
 class ProductsUpdatePartial(BaseModel):
     name: str | None = None
-    price: float | None
+    price: float | None = None
 
 
 class Products(ProductsBase):

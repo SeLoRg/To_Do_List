@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    font-family: 'Montserrat';
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: url("http://127.0.0.1:8000/front/images/auth.jpg") no-repeat; */
+    background-color: rgb(44, 44, 45);
+    background-size: cover;
+    background-position: center;
+}
+.wrapper{
+    width: 420px;
+    /* background:transparent; */
+    border: 2px solid rgb(0, 0, 0, 0.4);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 30px 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    letter-spacing: .1em;
+}
