@@ -29,16 +29,6 @@ COOKIE_JWT_REFRESH: str = "jwt-refresh-token"
 COOKIE_JWT_ACCESS: str = "jwt-access-token"
 
 
-@router.post("/set-cookie-token/", status_code=status.HTTP_200_OK)
-async def set_token_cookie(response: Response, value: str | None = None):
-    # response.delete_cookie(
-    #     key="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcxLCJ0eXAiOiJhY2Nlc3MiLCJlbWFpbCI6InJvc3Rpc2xhdm1hcmlub3ZAYmsucnUiLCJpYXQiOjE3MzE3ODUwNDEuOTAzNjg2LCJleHAiOjE3MzE3ODUxMDEuOTAzNjg2fQ.C9AJ0jb49YG2HF1HGp4Ck9vuPtM2cNZr8r2QnM1FBPxIHxwMM12auV2jQ7CQeh7QgCDJBM5W6acxxOm2rXF5K4z81S-OaoBN35WfVnb6eXkRz87WLaCgM2w1fG7Ka0WCZvfIsJcV4bPHxcdXskwijNnJBrQLg9okI3sstXXb9WkbXtYmFRfxjhLt4jJ82nJ__HpQY-w9Cbzn_w80A7te23pkrp9avNKznp-NDSVBYZIYOBM7loV7XCVMy_kpa6oiNXUzbxdYi4Y5DNxps8tHtK7y275cftj1jxmfZrIvFRhAI8MDYElig2paO1kISNb2velgYl2Xllfb92qmhirw-w"
-    # )
-    # response.delete_cookie(key=COOKIE_JWT_REFRESH)
-    response.set_cookie(key=COOKIE_JWT_ACCESS, value=value, max_age=5555555)
-    return {"message": "Cookie successfully set"}
-
-
 @router.post("/login", status_code=status.HTTP_200_OK)
 async def login(
     response: Response,
@@ -208,6 +198,13 @@ async def check_access_token(
         response.set_cookie(
             key=COOKIE_JWT_ACCESS, value=new_access_token, max_age=604800
         )
+
+        payload = jwt.decode(
+            jwt=new_access_token,
+            key=settings.auth_jwt.publik_key.read_text(),
+            algorithms=settings.auth_jwt.algorithm,
+        )
+        return payload
     except jwt.InvalidTokenError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid access token"

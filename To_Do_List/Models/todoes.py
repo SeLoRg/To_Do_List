@@ -1,22 +1,23 @@
-from sqlalchemy import ForeignKey, func, DateTime
+from sqlalchemy import ForeignKey, func, Date
 from .base import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .status import Status
 import datetime
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+
+    from .users import UsersOrm
 
 
-class TodoesOrm(Base):
-    __tablename__: str = "Todoes"
+class TasksOrm(Base):
+    __tablename__: str = "Tasks"
 
     name: Mapped[str]
-    status_id: Mapped[Status] = mapped_column(
+    status: Mapped[Status] = mapped_column(
         nullable=False, server_default=Status.unfinished.name
     )
-    description: Mapped[str]
-    created_at: Mapped[datetime.datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now()
-    )
-    expiration_at: Mapped[datetime.datetime] = mapped_column(nullable=True)
+    data: Mapped[datetime.date] = mapped_column(Date(), server_default=func.now())
     user_id: Mapped[int] = mapped_column(ForeignKey("Users.id"), nullable=False)
 
-    # user: Mapped["UsersOrm"] = relationship("UsersOrm", back_populates="todoes")
+    user: Mapped["UsersOrm"] = relationship("UsersOrm", back_populates="tasks")

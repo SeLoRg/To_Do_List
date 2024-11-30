@@ -18,7 +18,7 @@ document.getElementById("form-update-password").addEventListener("submit", async
         password: formData.get('new-password')
     };
 
-    const apiUrl = `http://127.0.0.1:8000/api/api-bd/users/update-user?email=${encodeURIComponent(email)}`;
+    const apiUrl = `/api/api-bd/users/update-user?email=${encodeURIComponent(email)}`;
 
     fetch(apiUrl, {
         method: "POST",

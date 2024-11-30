@@ -3,11 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDoList</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/drop-css.css">
+    <link rel="stylesheet" href="/css/main_page.css?v=1.9">
+    <!-- <link rel="stylesheet" href="/front/css/main-page-calendar.css"> -->
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
 </head>
-<body>
-    <div class="main">
-        Добро пожаловать
-    </div>
-    <script src="/front/js/js.js?v=1.0"></script>
+<body id="body">
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header__main-page-logo">ToDoList</a>
+                <div class="header__user">
+                    <a href="#" class="header__user-logo-bx">
+                        <img src="/images/auth.jpg" alt="user-logo" class="header__user-logo">
+                        <i class='bx bx-chevron-down'></i>
+                    </a>
+                    <div class="header__user-auth">
+                        <a href="/login" class="header__login">Login</a>
+                        /
+                        <a href="/registrate" class="header__registrate">Registrate</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <main class="main">
+            <div class="container">
+            <div class="main-inner">
+                
+                <!-- <div class="calendar"></div> -->
+                <section class="main__tasks">
+                    <div class="main__tasks-management">
+                        <div class="main__tasks-create">
+                            <h2>Добавить новую задачу</h2>
+                            <button id="add-task-btn" class="main__task-add" type="click">Добавить</button>
+                        </div>
+                    </div>
+                    <h2>Список задач на <input type="date" id="date-load" name="date" placeholder="dd-mm-yyyy"/></h2>
+                    <ul id="tasks-block" class="main__tasks-block">
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                        <li class="main__tasks-cart">
+                            <p class="main__task-description">${task.name}</p>
+                            <div class="main__task-rout">
+                                <button type="button" class="main__task-done --task-btn"><i class='bx bx-check'></i></button>
+                                <button type="button" class="main__task-delete --task-btn"><i class='bx bx-x'></i></button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </section>
+            </div>
+
+    </main>
+    <div id="form-task-container"></div>
+    <script src="/js/js.js?v=1.5"></script>
 </body>
 </html>
