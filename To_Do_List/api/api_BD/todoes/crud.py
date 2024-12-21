@@ -1,8 +1,5 @@
-import datetime
-
-from .schemas import TaskSchema, TaskCreateSchema, TasksStatusSchema
-from To_Do_List.Models import TasksOrm
-from To_Do_List.Models.status import Status
+from .schemas import TaskCreateSchema, TasksStatusSchema
+from To_Do_List.Core.Models import TasksOrm
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import HTTPException, status
 from sqlalchemy import select, and_, Result

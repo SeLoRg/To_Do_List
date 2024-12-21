@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, status, Cookie
-from To_Do_List.Core.database import database
+from fastapi import APIRouter, Depends, status
+from To_Do_List.Core.Database.database import database
 from sqlalchemy.ext.asyncio import AsyncSession
 from To_Do_List.api.api_BD.todoes import crud
 from .schemas import (
@@ -9,7 +9,7 @@ from .schemas import (
     TaskDeleteSchema,
     TasksStatusSchema,
 )
-from To_Do_List.Models import TasksOrm
+from To_Do_List.Core.Models import TasksOrm
 from To_Do_List.api.api_auth import router as api_auth
 
 router = APIRouter(tags=["Tasks"])

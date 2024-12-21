@@ -2,14 +2,12 @@ from .schemas import (
     UsersCreateSchema,
     UsersUpdateSchema,
 )
-from To_Do_List.Models import UsersOrm
+from To_Do_List.Core.Models import UsersOrm
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, Result
-from sqlalchemy.orm import joinedload
 from fastapi import HTTPException
 import bcrypt
 from fastapi import status
-import asyncio
 
 
 async def create_user(

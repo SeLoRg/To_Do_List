@@ -18,7 +18,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from To_Do_List.Models import Base
+from To_Do_List.Core.Models import Base
 
 target_metadata = Base.metadata
 
@@ -26,7 +26,7 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-from To_Do_List.Core.config import settings
+from To_Do_List.Core.config.config import settings
 
 config.set_main_option("sqlalchemy.url", settings.db_url + "?async_fallback=True")
 

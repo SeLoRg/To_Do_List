@@ -1,5 +1,5 @@
 import bcrypt
-from fastapi import HTTPException, Cookie, status, Depends
+from fastapi import HTTPException, status, Depends
 
 import jwt
 import datetime
@@ -8,12 +8,12 @@ import datetime
 from sqlalchemy import Result, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from To_Do_List.Core.config import settings
+from To_Do_List.Core.config.config import settings
 from fastapi_mail import FastMail, MessageSchema
 import asyncio
 
-from To_Do_List.Core.database import database
-from To_Do_List.Models import UsersOrm
+from To_Do_List.Core.Database.database import database
+from To_Do_List.Core.Models import UsersOrm
 from To_Do_List.api.api_auth.shemas import UserLogin
 
 

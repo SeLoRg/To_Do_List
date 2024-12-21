@@ -6,27 +6,24 @@ from fastapi import (
     status,
     Depends,
     HTTPException,
-    Header,
 )
 from fastapi_mail import FastMail, MessageSchema
 
 
-from To_Do_List.Core.config import settings
+from To_Do_List.Core.config.config import settings
 from To_Do_List.api.api_auth import dependencies
-from .shemas import EmailVerificationRequest, UserLogin
+from .shemas import EmailVerificationRequest
 from sqlalchemy.ext.asyncio import AsyncSession
-from To_Do_List.Core.database import database
+from To_Do_List.Core.Database.database import database
 import jwt
 from sqlalchemy import select, Result
-from To_Do_List.Models import UsersOrm
+from To_Do_List.Core.Models import UsersOrm
 import os
 import aiofiles
-import bcrypt
-
 
 router = APIRouter(tags=["Auth"], prefix="/auth")
-COOKIE_JWT_REFRESH: str = "jwt-refresh-token"
-COOKIE_JWT_ACCESS: str = "jwt-access-token"
+COOKIE_JWT_REFRESH: str = "jwt_check-refresh-token"
+COOKIE_JWT_ACCESS: str = "jwt_check-access-token"
 
 
 @router.post("/login", status_code=status.HTTP_200_OK)
@@ -142,70 +139,3 @@ async def user_verification(
     await session.commit()
 
     return {"message": "User is active"}
-
-
-@router.post("/check-refresh-token", status_code=status.HTTP_200_OK)
-async def check_refresh_token(
-    token_refresh: str | None = Cookie(alias=COOKIE_JWT_REFRESH, default=None),
-):
-    if token_refresh is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Refresh token is missed",
-        )
-    try:
-        payload = jwt.decode(
-            jwt=token_refresh,
-            key=settings.auth_jwt.publik_key.read_text(),
-            algorithms=settings.auth_jwt.algorithm,
-        )
-        return payload
-    except jwt.ExpiredSignatureError as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token refresh expired",
-        )
-    except jwt.InvalidTokenError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid refresh token"
-        )
-
-
-@router.post("/check-access-token", status_code=status.HTTP_200_OK)
-async def check_access_token(
-    response: Response,
-    token_access: str | None = Cookie(alias=COOKIE_JWT_ACCESS, default=None),
-    token_refresh: str | None = Cookie(alias=COOKIE_JWT_REFRESH, default=None),
-):
-    if token_access is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Access token is missed",
-        )
-    try:
-        payload = jwt.decode(
-            jwt=token_access,
-            key=settings.auth_jwt.publik_key.read_text(),
-            algorithms=settings.auth_jwt.algorithm,
-        )
-        return payload
-    except jwt.ExpiredSignatureError as e:
-        payload = await check_refresh_token(token_refresh=token_refresh)
-        new_access_token = await dependencies.create_jwt_token(
-            user_email=payload.get("email"),
-            user_id=payload.get("sub"),
-        )
-        response.set_cookie(
-            key=COOKIE_JWT_ACCESS, value=new_access_token, max_age=604800
-        )
-
-        payload = jwt.decode(
-            jwt=new_access_token,
-            key=settings.auth_jwt.publik_key.read_text(),
-            algorithms=settings.auth_jwt.algorithm,
-        )
-        return payload
-    except jwt.InvalidTokenError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid access token"
-        )

@@ -1,9 +1,8 @@
 from fastapi import Depends, APIRouter, status, BackgroundTasks, Response
-from fastapi.responses import FileResponse
-from .schemas import UsersCreateSchema, UsersSchema, UsersUpdateSchema
-from To_Do_List.Models import UsersOrm
+from .schemas import UsersCreateSchema, UsersUpdateSchema
+from To_Do_List.Core.Models import UsersOrm
 from sqlalchemy.ext.asyncio import AsyncSession
-from To_Do_List.Core.database import database
+from To_Do_List.Core.Database.database import database
 from To_Do_List.api.api_BD.users import crud
 from To_Do_List.api.api_auth import dependencies
 from To_Do_List.api.api_auth.router import send_email_verification

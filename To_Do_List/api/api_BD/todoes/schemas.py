@@ -2,8 +2,7 @@ import datetime
 
 from pydantic import BaseModel, ConfigDict
 
-from To_Do_List.Models.status import Status
-from typing import Optional
+from To_Do_List.Core.Models.status import Status
 
 
 class TodoGetSchema(BaseModel):
