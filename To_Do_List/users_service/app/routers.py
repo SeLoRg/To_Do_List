@@ -1,5 +1,5 @@
 import json
-
+import bcrypt
 from aiokafka.errors import KafkaError
 from fastapi import (
     Depends,
@@ -9,8 +9,10 @@ from fastapi import (
     HTTPException,
     Cookie,
 )
+from sqlalchemy import Result, select
+from sqlalchemy.exc import NoResultFound
 
-from .schemas import UsersCreateSchema, UsersUpdateSchema
+from .schemas import UsersCreateSchema, UsersUpdateSchema, UserLoginSchema
 from ...Core.Models import UsersOrm
 from ...Core.config.config import settings
 from ...Core.Database.database import database
@@ -48,6 +50,35 @@ async def create_user(
             detail="Somthing wrong! Please try again.",
         )
     return {"detail": "User create"}
+
+
+@router.post("/get-user")
+async def get_user(
+    data: UserLoginSchema,
+    session: AsyncSession = Depends(database.get_session),
+) -> UsersOrm:
+    stmt = select(UsersOrm).where(UsersOrm.email == data.email)
+    res: Result = await session.execute(stmt)
+    try:
+        user: UsersOrm = res.scalars().one()
+    except NoResultFound:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password"
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Email not confirmed"
+        )
+
+    if not bcrypt.checkpw(
+        password=data.password.encode(), hashed_password=user.password
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password"
+        )
+
+    return user
 
 
 # тут в будущем нужно добавить сущность в бд под именем Profile.

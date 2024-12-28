@@ -11,7 +11,9 @@ from .shemas import UserLoginSchema
 from . import service
 from sqlalchemy.ext.asyncio import AsyncSession
 from ...Core.Database.database import database
-from . import dependencies
+from ...Core.config.config import settings
+from ...Core.Models import UsersOrm
+import aiokafka
 
 
 router = APIRouter(tags=["Auth"], prefix="/auth")
@@ -24,16 +26,14 @@ async def login(
     session: AsyncSession = Depends(database.get_session),
 ):
     try:
-        login_result: dict = await service.login_user(data, session, response)
+        login_result: dict = await service.login_user(
+            data=data, session=session, response=response
+        )
         return login_result
-    except Exception as e:
+    except HTTPException as e:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))
-    # token_refresh = await dependencies.create_jwt_token(
-    #     refresh_id=1,
-    #     user_id=2,
-    #     typ="refresh",
-    # )
-    # return {"detail": token_refresh}
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=str(e))
 
 
 # @router.post("/send-email-update-password", status_code=status.HTTP_200_OK)

@@ -1,8 +1,8 @@
 """create refresh list
 
-Revision ID: a9d988fc38b6
+Revision ID: d4dcb4faf0db
 Revises: d30a00bb6fe7
-Create Date: 2024-12-21 19:56:47.597073
+Create Date: 2024-12-22 00:04:54.115079
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'a9d988fc38b6'
+revision: str = 'd4dcb4faf0db'
 down_revision: Union[str, None] = 'd30a00bb6fe7'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None

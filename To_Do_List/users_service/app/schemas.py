@@ -1,6 +1,11 @@
 from pydantic import ConfigDict, BaseModel
 
 
+class UserLoginSchema(BaseModel):
+    email: str
+    password: str
+
+
 class UsersCreateSchema(BaseModel):
     password: str
     username: str

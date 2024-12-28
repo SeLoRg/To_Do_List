@@ -5,7 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eb76575-9fc4-4233-bd51-6970bea9d50a" name="Changes" comment="удаление папок">
+      <change afterPath="$PROJECT_DIR$/To_Do_List/Core/kafka_service/KafkaService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/Core/kafka_service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Database/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/friends_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/profiles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/refresh_black_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/refresh_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/todoes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/Models/users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/config/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/jwt_check/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/jwt_check/jwt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/kafka_service/KafkaService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/Core/kafka_service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/KafkaService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/jwt_factory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/kafka_interaction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/To_Do_List/auth_service/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/api/api_auth/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/api/api_auth/dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/auth_service/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/auth_service/app/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/auth_service/app/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/auth_service/app/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/users_service/app/routers.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/users_service/app/routers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To_Do_List/users_service/app/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_Do_List/users_service/app/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/a9d988fc38b6_create_refresh_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/d4dcb4faf0db_create_refresh_list.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,42 +80,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.config.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.crud.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ff.executor&quot;: &quot;Run&quot;,
-    &quot;Python.friends_list.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.models.executor&quot;: &quot;Run&quot;,
-    &quot;Python.router.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_kafka.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rosti/PycharmProjects/FastAPI_DB/To_Do_List/users_service/app&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.config.executor": "Debug",
+    "Python.crud.executor": "Debug",
+    "Python.database.executor": "Run",
+    "Python.ff.executor": "Run",
+    "Python.friends_list.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.router.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test_kafka.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "local",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/rosti/PycharmProjects/FastAPI_DB/To_Do_List/auth_service",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\auth_service" />
+      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB" />
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\users_service\app" />
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\users_service" />
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\users_service\Models" />
-      <recent name="C:\Users\rosti\PycharmProjects\FastAPI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\auth_service" />
+      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\auth_service\app" />
+      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\Core\kafka_service" />
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List" />
       <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\Core\config" />
-      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\Core\Database" />
-      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\To_Do_List\Core" />
-      <recent name="C:\Users\rosti\PycharmProjects\FastAPI_DB\alembic\versions" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -206,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734812705529</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="удаление папок">
+      <option name="closed" value="true" />
+      <created>1734813839791</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734813839791</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -219,7 +260,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="local" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
