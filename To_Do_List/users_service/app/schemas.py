@@ -1,9 +1,10 @@
 from pydantic import ConfigDict, BaseModel
 
 
-class UserLoginSchema(BaseModel):
-    email: str
-    password: str
+class UserGetSchema(BaseModel):
+    email: str | None = None
+    id: int | None = None
+    model_config = ConfigDict(extra="ignore")
 
 
 class UsersCreateSchema(BaseModel):
@@ -24,7 +25,6 @@ class UsersDeleteSchema(UsersCreateSchema):
 
 class UsersSchema(BaseModel):
     id: int
-    password: str
     username: str
     email: str
 

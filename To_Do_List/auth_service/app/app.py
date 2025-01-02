@@ -4,8 +4,6 @@ from fastapi import FastAPI
 from .router import router
 
 from .kafka_interaction import kafka_service, KafkaMessageHeadersSchema
-from .KafkaService import KafkaService
-from ..Core.config.config import settings
 
 app = FastAPI()
 
@@ -28,19 +26,15 @@ async def shutdown_event():
         print(str(e))
 
 
-# app.add_event_handler("startup", startup_event)
-# app.add_event_handler("shutdown", shutdown_event)
 @app.post("/")
 async def send_to_users(email: str, request_id: str):
     await kafka_service.send_and_wait(
         topic="users-requests",
         value={"request_id": request_id, "email": email},
         headers=KafkaMessageHeadersSchema(
-            **{
-                "service_from": "auth-service",
-                "type_message": "request",
-                "method": "get",
-            }
+            service_from="auth-service",
+            type_message="request",
+            method="get",
         ),
     )
 

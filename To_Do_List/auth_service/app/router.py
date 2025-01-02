@@ -26,7 +26,7 @@ async def login(
     session: AsyncSession = Depends(database.get_session),
 ):
     try:
-        login_result: dict = await service.login_user(
+        login_result: dict = await service.login(
             data=data, session=session, response=response
         )
         return login_result

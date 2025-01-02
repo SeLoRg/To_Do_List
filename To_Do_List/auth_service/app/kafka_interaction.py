@@ -1,5 +1,8 @@
 from ..Core.config.config import settings
-from .KafkaService import KafkaService, KafkaMessageHeadersSchema
+from To_Do_List.Core.kafka_service.KafkaService import (
+    KafkaService,
+    KafkaMessageHeadersSchema,
+)
 import asyncio
 from fastapi import HTTPException
 import uuid
@@ -35,58 +38,3 @@ async def get_user_from_users_service(email: str) -> int:
         raise HTTPException(status_code=408, detail="Timeout")
     finally:
         del kafka_service.active_auth_requests[request_id]
-
-
-# async def send_message_to_users_service(topic: str, value: dict) -> str:
-#     request_id: str = str(uuid.uuid4())
-#
-#     try:
-#         await producer.send_and_wait(
-#             topic=topic,
-#             value=json.dumps(value).encode(),
-#             headers=[("service", SERVICE_NAME)],
-#         )
-#     except Exception as e:
-#         raise HTTPException(
-#             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-#             detail="Message dont send",
-#         )
-#
-#     return request_id
-
-
-# async def read_messages():
-#     async for msg in consumer:
-#         await messages.put(msg)
-
-
-# Для каждого сервиса отдельный топик для ответа от users
-# async def get_user_from_users_service(data: UserLoginSchema, request_id: str) -> int:
-#     try:
-#         async for msg in consumer:
-#             service_name = None
-#             for header in msg.headers:
-#                 if header[0] == "service":
-#                     service_name = header[1].decode("utf-8")
-#                     break
-#
-#             if service_name == SERVICE_NAME:
-#                 response: dict = json.loads(msg.values.decode())
-#
-#                 if "error" in response:
-#                     raise HTTPException(
-#                         status_code=status.HTTP_404_NOT_FOUND,
-#                         detail="User not founded",
-#                     )
-#
-#                 if (
-#                     response.get("request_id") == request_id
-#                     and response.get("email") == data.email
-#                 ):
-#                     return response.get("user_id")
-#
-#     except Exception as e:
-#
-#         raise HTTPException(
-#             status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=str(e)
-#         )

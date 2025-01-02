@@ -6,7 +6,10 @@ from .jwt_factory import issue_tokens
 from .kafka_interaction import get_user_from_users_service
 
 
-async def login_user(
+# здесь буду заполнять словарь kafka_service.endpoints методами сервиса
+
+
+async def login(
     data: UserLoginSchema,
     session: AsyncSession,
     response: Response,
