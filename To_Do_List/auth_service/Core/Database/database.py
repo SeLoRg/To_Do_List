@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from To_Do_List.Core.config.config import settings
+from ..config.config import settings
 
 
 class DataBase:
@@ -17,4 +17,5 @@ class DataBase:
             await sess.close()
 
 
-database = DataBase(url=settings.db_url, echo=settings.db_echo)
+database_users = DataBase(url=settings.users_db_url, echo=settings.db_echo)
+database_sessions = DataBase(url=settings.sessions_db_url, echo=settings.db_echo)
