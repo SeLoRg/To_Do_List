@@ -2,7 +2,7 @@ import asyncio
 from fastapi.exceptions import HTTPException
 import grpc
 from . import auth_pb2
-from To_Do_List.main_service.gRpc.auth import auth_pb2_grpc
+from . import auth_pb2_grpc
 from app.shemas import (
     CheckAuthResponse,
     UserLoginSchema,
