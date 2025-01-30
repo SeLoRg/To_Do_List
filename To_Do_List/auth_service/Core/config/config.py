@@ -13,14 +13,14 @@ load_dotenv(dotenv_path)
 
 class AuthJWT(BaseSettings):
     private_key: Path = Path(
-        "C:/Users/rosti/PycharmProjects/FastAPI_DB/certs/jwt-private.pem"
+        "C:/Users/rosti/PycharmProjects/FastAPI_DB/certs/private_key.pem"
     )
     public_key: Path = Path(
-        "C:/Users/rosti/PycharmProjects/FastAPI_DB/certs/jwt-public.pem"
+        "C:/Users/rosti/PycharmProjects/FastAPI_DB/certs/public_key.pem"
     )
     algorithm: str = "RS256"
     token_refresh_live: datetime.timedelta = datetime.timedelta(days=30)
-    token_access_live: datetime.timedelta = datetime.timedelta(minutes=15)
+    token_access_live: datetime.timedelta = datetime.timedelta(minutes=5)
 
     COOKIE_JWT_REFRESH: str = os.environ.get("COOKIE_JWT_REFRESH")
     COOKIE_JWT_ACCESS: str = os.environ.get("COOKIE_JWT_ACCESS")
@@ -50,7 +50,16 @@ class KafkaSettings(BaseSettings):
     SERVICE_NAME: str = os.environ.get("SERVICE_NAME")
 
 
-class Settings(DBSettings, KafkaSettings, AuthJWT):
+class RedisSettings(BaseSettings):
+    REDIS_HOST: str = os.environ.get("REDIS_HOST")
+    REDIS_PORT: str = os.environ.get("REDIS_PORT")
+    REDIS_DB: str = os.environ.get("REDIS_DB")
+
+    KEY_USER_SESSION: str = "session_"
+    KEY_USER: str = "user_"
+
+
+class Settings(DBSettings, KafkaSettings, AuthJWT, RedisSettings):
     pass
 
 

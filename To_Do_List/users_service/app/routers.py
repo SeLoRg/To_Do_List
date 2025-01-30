@@ -14,24 +14,27 @@ from .logger import logger
 router = APIRouter(tags=["Users"])
 
 
-@router.post("/create-user", status_code=status.HTTP_201_CREATED)
+@router.put("/create-user", status_code=status.HTTP_201_CREATED)
 async def create_user(
     user_in: UsersCreateSchema,
     session: AsyncSession = Depends(database.get_session),
 ):
     logger.info("/create-user request...")
 
-    await crud.create_user(user_in=user_in, session=session)
-    return {"detail": f"User {user_in.username} created"}
+    res: dict = await crud.create_user(user_in=user_in, session=session)
+    return res
 
 
-@router.post("/get-user", response_model=UsersSchema | None)
+@router.get("/get-user", response_model=UsersSchema | None)
 async def get_user(
-    data: UserGetSchema,
+    user_id: int | None = None,
+    user_email: str | None = None,
     session: AsyncSession = Depends(database.get_session),
 ):
     logger.info("/get-user request...")
-    user: UsersOrm | None = await crud.get_user(data=data, session=session)
+    user: UsersOrm | None = await crud.get_user(
+        user_email=user_email, user_id=user_id, session=session
+    )
     return user
 
 
@@ -53,4 +56,4 @@ async def delete_user(
 ):
     logger.info("/delete-user request...")
 
-    await crud.delete_user(id_user=user_id, session=session)
+    await crud.delete_user(user_id=user_id, session=session)

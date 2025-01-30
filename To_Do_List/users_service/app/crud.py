@@ -14,23 +14,24 @@ from .logger import logger
 
 
 async def get_user(
-    data: UserGetSchema,
     session: AsyncSession,
+    user_id: int | None = None,
+    user_email: str | None = None,
 ) -> UsersOrm | None:
-    if data.email is not None:
-        stmt = select(UsersOrm).where(UsersOrm.email == data.email)
+    if user_email is not None:
+        stmt = select(UsersOrm).where(UsersOrm.email == user_email)
     else:
-        stmt = select(UsersOrm).where(UsersOrm.id == data.id)
+        stmt = select(UsersOrm).where(UsersOrm.id == user_id)
     res: Result = await session.execute(stmt)
     try:
         user: UsersOrm = res.scalars().one()
         logger.info(f"User founded: id={user.id}")
         return user
     except NoResultFound as e:
-        if data.email is not None:
-            logger.info(f"User with this email: {data.email} not founded")
+        if user_email is not None:
+            logger.info(f"User with this email: {user_email} not founded")
         else:
-            logger.info(f"User with this id: {data.id} not founded")
+            logger.info(f"User with this id: {user_id} not founded")
 
         return None
 
@@ -38,21 +39,16 @@ async def get_user(
 async def create_user(
     session: AsyncSession,
     user_in: UsersCreateSchema,
-) -> None:
+) -> dict:
 
-    user: UsersOrm | None = await get_user(
-        data=UserGetSchema(email=user_in.email), session=session
-    )
+    user: UsersOrm | None = await get_user(user_email=user_in.email, session=session)
 
     if user is not None:
         logger.info(f"User with this email: {user_in.email} already exist")
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail=f"User with this email: {user_in.email} already exist",
-        )
+        return {"detial": f"User with this email: {user_in.email} already exist"}
 
     try:
-        salt = bcrypt.gensalt()
+        salt = bcrypt.gensalt(rounds=8)
         hash_pwd = bcrypt.hashpw(password=user_in.password.encode(), salt=salt)
 
         user_create: UsersOrm = UsersOrm(
@@ -64,6 +60,7 @@ async def create_user(
         session.add(user_create)
         await session.commit()
         logger.info(f"User {user_in.username} created")
+        return {"detail": f"User {user_in.username} created"}
 
     except Exception:
         raise HTTPException(
@@ -77,9 +74,7 @@ async def update_partial_user(
     user_in: UsersUpdateSchema,
     session: AsyncSession,
 ):
-    user: UsersOrm | None = await get_user(
-        data=UserGetSchema(id=user_id), session=session
-    )
+    user: UsersOrm | None = await get_user(user_id=user_id, session=session)
 
     if user is None:
         raise HTTPException(
@@ -102,19 +97,17 @@ async def update_partial_user(
 
 
 async def delete_user(
-    id_user: int,
+    user_id: int,
     session: AsyncSession,
 ) -> None:
-    user: UsersOrm | None = await get_user(
-        data=UserGetSchema(id=id_user), session=session
-    )
+    user: UsersOrm | None = await get_user(user_id=user_id, session=session)
 
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User with this id doesn't exist",
+            detail=f"User with this id={user_id} doesn't exist",
         )
 
     await session.delete(user)
     await session.commit()
-    logger.info(f"User with id={id_user} deleted")
+    logger.info(f"User with id={user_id} deleted")
