@@ -1,4 +1,4 @@
-/certs/private_key.pem
+certs/
 alembic/
 .env
 alembic.ini
