@@ -4,12 +4,13 @@ import jwt
 
 from .shemas import (
     UserLoginSchema,
-    RequestCredentials,
+    Credentials,
     UserRegistrateSchema,
-    ResponseCredentials,
     CheckAuthResponse,
     UserLoginResponse,
+    CheckAuthRequest,
     LogoutRequest,
+    Tokens,
 )
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Response, HTTPException, status, Depends, Request
@@ -28,28 +29,13 @@ from grpc import RpcError
 
 
 async def create_jwt_token(
-    typ: str = "access",
     **kwargs,
 ) -> str:
-    if typ == "access":
-        payload: dict = {
-            **kwargs,
-            "typ": typ,
-            "iat": datetime.now(tz=timezone.utc).timestamp(),
-            "exp": (
-                datetime.now(tz=timezone.utc) + settings.token_access_live
-            ).timestamp(),
-        }
-        # logger.info(f"payload={payload}")
-    else:
-        payload: dict = {
-            **kwargs,
-            "typ": typ,
-            "iat": datetime.now(tz=timezone.utc).timestamp(),
-            "exp": (
-                datetime.now(tz=timezone.utc) + settings.token_refresh_live
-            ).timestamp(),
-        }
+    payload: dict = {
+        **kwargs,
+        "iat": datetime.now(tz=timezone.utc).timestamp(),
+        "exp": (datetime.now(tz=timezone.utc) + settings.token_access_live).timestamp(),
+    }
     private_key = settings.private_key.read_text()
 
     return jwt.encode(
@@ -59,86 +45,13 @@ async def create_jwt_token(
     )
 
 
-async def get_credentials_from_jwt(token: str) -> ResponseCredentials | None:
-    try:
-        payload: dict = jwt.decode(
-            jwt=token,
-            key=settings.public_key.read_text(),
-            algorithms=settings.algorithm,
-        )
-        return ResponseCredentials(**payload)
-    except jwt.ExpiredSignatureError as e:
-        logger.info(f"token expired")
-        return None
-    except jwt.InvalidTokenError as e:
-        logger.error(f"Invalid token: {e}")
-        return None
-    except Exception as e:
-        logger.error(f"Error when decode jwt: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="f{e}"
-        )
-
-
-async def send_request(
-    method: str,
-    url: str,
-    headers: dict | None = None,
-    data: dict | BaseModel = None,
-    params: dict | None = None,
-) -> Response | Any:
-    try:
-        async with httpx.AsyncClient() as client:
-            if isinstance(data, BaseModel):
-                data = data.model_dump()
-
-            request = client.build_request(
-                method=method, url=url, headers=headers, json=data, params=params
-            )
-            response = await client.send(request=request)
-            response.raise_for_status()
-            return Response(response.content, response.status_code, response.headers)
-    except httpx.HTTPError as e:
-        logger.error(f"Http error during send {data} to: {url}. Error: {e}")
-        raise HTTPException(
-            status_code=response.status_code, detail=f"Error during HTTP request: {e}"
-        )
-    except Exception as e:
-        logger.error(f"Error during send message to {url}. Error: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error during HTTP request: {e}",
-        )
-
-
-async def registrate(
-    data: UserRegistrateSchema,
-    response: Response,
-) -> dict:
-    try:
-        response_from_users: Response = await send_request(
-            method="PUT", url="http://localhost:8001/create-user", data=data
-        )
-
-        response = response_from_users
-        if 200 <= response.status_code < 300:
-            return {"detail": "user create success"}
-
-    except HTTPException as e:
-        raise HTTPException(status_code=e.status_code, detail=f"{e.detail}")
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"{e}"
-        )
-
-
 async def login(
     data: UserLoginSchema,
     session_user: AsyncSession,
     session_sessions: AsyncSession,
 ) -> UserLoginResponse | HTTPException:
     try:
-        logger.info(f"try find user with email={data.email} in db")
+        logger.info(f"Try find user with email={data.email} in db")
         user: UsersOrm | None = await crud.get_user(
             user_email=data.email, session=session_user
         )
@@ -170,7 +83,10 @@ async def login(
         if user_session is None:
             logger.info("Create session")
             user_session = await crud.create_user_session(
-                user_id=user.id, session=session_sessions
+                user_id=user.id,
+                agent=data.agent,
+                ip=data.ip,
+                session=session_sessions,
             )
             logger.info(f"Session created")
 
@@ -180,21 +96,32 @@ async def login(
 
         res: tuple = await asyncio.gather(
             redis_client.set(
-                name=f"{settings.KEY_USER_SESSION}{user.email}",
+                name=user_session.refresh_token,
                 value=json.dumps(
-                    {"user_id": user_session.user_id, "id": user_session.id}
+                    {
+                        "user_id": user_session.user_id,
+                        "id": user_session.id,
+                        "agent": user_session.agent,
+                        "ip": user_session.ip,
+                        "is_valid": user_session.is_valid,
+                        "expire": user_session.expire,
+                    }
                 ).encode(),
                 ex=timedelta(hours=1),
             ),
-            create_jwt_token(
-                user_id=user.id, user_email=user.email, session_id=user_session.id
-            ),
+            create_jwt_token(user_id=user.id, user_email=user.email),
         )
 
         access_token: str = res[1]
+        refresh_token: str = user_session.refresh_token
         await session_sessions.commit()
-        logger.info(f"Access token created: {access_token}")
-        return UserLoginResponse(access_token=access_token)
+        await session_user.close()
+        logger.info(
+            f"Access token created: {access_token}, Refresh token: {refresh_token}"
+        )
+        return UserLoginResponse(
+            is_login=True, access_token=access_token, refresh_token=refresh_token
+        )
 
     except HTTPException as e:
         return HTTPException(status_code=e.status_code, detail=f"{e}")
@@ -210,10 +137,9 @@ async def logout(
     session_sessions: AsyncSession,
 ) -> HTTPException | None:
     try:
-
-        logger.info(f"try get user session form db")
-        user_session: None | bytes | SessionsOrm = await crud.get_user_session(
-            session=session_sessions, session_id=credentials.session_id
+        logger.info(f"Try get user session form db")
+        user_session: None | SessionsOrm = await crud.get_user_session(
+            session=session_sessions, user_id=credentials.user_id
         )
 
         if user_session is not None:
@@ -221,16 +147,17 @@ async def logout(
             await session_sessions.delete(user_session)
             await session_sessions.commit()
 
-        logger.info(f"user_session not founded")
+            logger.info(f"Try to get user_session from cache")
+            redis_key_session: str = f"{user_session.refresh_token}"
+            user_session = await redis_client.get(name=redis_key_session)
 
-        logger.info(f"Try to get user_session from cache")
-        redis_key_session: str = f"{settings.KEY_USER_SESSION}{credentials.user_email}"
-        user_session = await redis_client.get(name=redis_key_session)
+            if user_session is not None:
+                logger.info(f"del user session from cache")
+                await redis_client.delete(redis_key_session)
 
-        if user_session is not None:
-            logger.info(f"del user session from cache")
-            await redis_client.delete(redis_key_session)
+            return
 
+        logger.info(f"user_session in db not founded")
         return
     except Exception as e:
         return HTTPException(
@@ -239,65 +166,71 @@ async def logout(
 
 
 async def check_authenticate(
-    access_token: str | None,
+    data: CheckAuthRequest,
     session_sessions: AsyncSession,
-) -> CheckAuthResponse | None:
-    try:
-        if access_token is None:
-            return None
+) -> CheckAuthResponse:
+    response: CheckAuthResponse = CheckAuthResponse()
 
-        res: CheckAuthResponse = CheckAuthResponse()
+    try:
+        if data.access_token is None or data.refresh_token is None:
+            response.is_login = False
+            return response
 
         payload: dict = jwt.decode(
-            jwt=access_token,
+            jwt=data.access_token,
             key=settings.public_key.read_text(),
             algorithms=settings.algorithm,
             options={"verify_exp": False},
         )
-        res.credentials = ResponseCredentials(**payload)
         # Истек ли токен?
         if payload.get("exp") < datetime.now(tz=timezone.utc).timestamp():
+            logger.info(f"access token expired")
 
-            logger.info(f"token expired")
-            res.token_exp = True
-            redis_key = f"{settings.KEY_USER_SESSION}{payload.get("user_email")}"
-            logger.info(f"try get user session from cache by key={redis_key}")
-            user_session: SessionsOrm | None | bytes = await redis_client.get(redis_key)
-
-            if user_session is not None:
-                user_session = SessionsOrm(**json.loads(user_session.decode()))
-            else:
-                logger.info(f"get user session from db")
-                user_session = await crud.get_user_session(
-                    session=session_sessions,
-                    session_id=payload.get("session_id"),
-                )
-            if user_session is None:
-                logger.info("user session not founded")
-                return None
-
-            if user_session.user_id != payload.get("user_id"):
-                logger.info("user session not founded")
-                return None
-
-            logger.info(f"set user session in cache")
-            await redis_client.set(
-                name=redis_key,
-                value=json.dumps(
-                    {"user_id": user_session.user_id, "id": user_session.id}
-                ).encode(),
-                ex=timedelta(hours=1),
+            logger.info(f"get user session from db")
+            user_session: SessionsOrm | None = await crud.get_user_session(
+                session=session_sessions,
+                token=data.refresh_token,
             )
 
-            access_token: str = await create_jwt_token(**payload)
-            res.new_token = access_token
-            logger.info(f"new token={access_token}")
+            if user_session is None:
+                logger.info("user is not authenticated")
+                return response
 
-        return res
+            if data.ip != user_session.ip or data.agent != user_session.agent:
+                logger.info("user is not authenticated")
+                return response
+
+            if datetime.now(tz=timezone.utc).timestamp() >= user_session.expire:
+                logger.info("user is not authenticated")
+                await session_sessions.delete(user_session)
+                await session_sessions.commit()
+                return response
+
+            new_user_session: SessionsOrm = await crud.create_user_session(
+                session=session_sessions,
+                user_id=user_session.user_id,
+                agent=user_session.agent,
+                ip=user_session.ip,
+            )
+            await session_sessions.delete(user_session)
+            new_access_token: str = await create_jwt_token(**payload)
+            new_refresh_token: str = new_user_session.refresh_token
+            logger.info(
+                f"new tokens:\naccess={new_access_token}\nrefresh={new_refresh_token}"
+            )
+            response.new_tokens = Tokens(
+                access_token=new_access_token, refresh_token=new_refresh_token
+            )
+            await session_sessions.commit()
+
+        response.is_login = True
+        response.credentials = Credentials(**payload)
+
+        return response
 
     except jwt.InvalidTokenError as e:
         logger.error(f"Invalid token: {e}")
-        return None
+        return response
     except Exception as e:
         logger.error(f"Error when decode jwt: {e}")
-        return None
+        return response
