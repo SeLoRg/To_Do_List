@@ -6,50 +6,41 @@ service AuthService {
     rpc CheckAuth (CheckAuthRequest) returns (CheckAuthResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
     rpc Logout (LogoutRequest) returns (LogoutResponse);
-    rpc GetCredentials (GetCredentialsRequest) returns (GetCredentialsResponse);
+}
+
+message Credentials {
+    string user_id = 1;
+}
+message Tokens {
+    string access_token = 1;
+    string refresh_token = 2;
 }
 
 message CheckAuthRequest {
-    optional google.protobuf.StringValue access_token = 1;
-
-}
-
-message RequestCredentials {
-    string user_email = 1;
-    string session_id = 2;
-    string user_id = 3;
+    string ip = 1;
+    string agent = 2;
+    Tokens tokens = 3;
 }
 
 message CheckAuthResponse {
-    bool auth_status = 1;
-    optional google.protobuf.StringValue new_access_token = 2;
-    optional bool token_is_updated = 3;
-    optional RequestCredentials credentials = 4; // Использование вложенного сообщения
+    bool is_login = 1;
+    optional Tokens new_tokens = 2;
+    optional Credentials credentials = 4;
 }
 
 message LoginRequest {
-    string user_email = 1;
-    string password = 2;
+    string ip = 1;
+    string agent = 2;
+    string user_email = 3;
+    string password = 4;
 }
 message LoginResponse {
-   string status_code = 1;
-   string detail = 2;
-   optional string access_token = 3;
+    bool is_login = 1;
+    optional Tokens tokens = 2;
 }
 message LogoutRequest {
-    string user_email = 1;
-    string session_id = 2;
-    string user_id = 3;
+    Credentials credentials = 1;
 }
 message LogoutResponse {
-    string status_code = 1;
-    string detail = 2;
-}
-message GetCredentialsRequest{
-    string access_token = 1;
-}
-message GetCredentialsResponse{
-    string session_id = 1;
-    string user_email = 2;
-    string user_id = 3;
+    bool is_logout = 1;
 }

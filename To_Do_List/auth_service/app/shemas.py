@@ -1,13 +1,21 @@
 from pydantic import BaseModel, ConfigDict
 
 
+class Tokens(BaseModel):
+    access_token: str
+    refresh_token: str
+
+
 class UserLoginSchema(BaseModel):
     email: str
     password: str
+    ip: str
+    agent: str
 
 
-class UserLoginResponse(BaseModel):
-    access_token: str
+class UserLoginResponse(Tokens):
+    is_login: bool
+    pass
 
 
 class UserRegistrateSchema(BaseModel):
@@ -16,32 +24,26 @@ class UserRegistrateSchema(BaseModel):
     password: str
 
 
-class ResponseCredentials(BaseModel):
-    user_email: str
-    session_id: int
+class Credentials(BaseModel):
     user_id: int
     model_config = ConfigDict(from_attributes=True)
 
 
-class LogoutRequest(BaseModel):
-    user_email: str
-    session_id: int
-    user_id: int
-    model_config = ConfigDict(from_attributes=True)
+class LogoutRequest(Credentials):
+    pass
 
 
-class RequestCredentials(BaseModel):
-    user_email: str
-    session_id: int
-    user_id: int
-    model_config = ConfigDict(from_attributes=True)
+class CheckAuthRequest(BaseModel):
+    ip: str
+    agent: str
+    access_token: str | None = None
+    refresh_token: str | None = None
 
 
 class CheckAuthResponse(BaseModel):
-    auth_status: bool = True
-    new_token: str | None = None
-    token_exp: bool = False
-    credentials: RequestCredentials = None
+    is_login: bool = False
+    new_tokens: Tokens | None = None
+    credentials: Credentials | None = None
     model_config = ConfigDict(from_attributes=True)
 
 
