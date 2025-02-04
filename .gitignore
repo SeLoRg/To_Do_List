@@ -1,6 +1,6 @@
 /certs/private_key.pem
-alembic
+alembic/
 .env
 alembic.ini
-.venv
-.idea
+.venv/
+.idea/
